@@ -1,16 +1,25 @@
-.cache
-.idea
-.env*
-log
-test/log
-test/**/log
-.pytest_cache
-.vscode
-*__pycache__*
-data
-test/data
-test/**/data
+# Environment variables
+.env
+.env.local
+.env.production
 
-# pipenv
-Pipfile
-Pipfile.lock
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/

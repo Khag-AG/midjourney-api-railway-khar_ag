@@ -8,7 +8,7 @@ from app.handler import PROMPT_PREFIX, PROMPT_SUFFIX
 from lib.api.callback import queue_release, callback
 from task.bot._typing import CallbackData, Attachment, Embed
 
-TRIGGER_ID_PATTERN = f"{PROMPT_PREFIX}(\w+?){PROMPT_SUFFIX}"  # 消息 ID 正则
+TRIGGER_ID_PATTERN = f"{PROMPT_PREFIX}(\\w+?){PROMPT_SUFFIX}"  # 消息 ID 正则
 
 TEMP_MAP: Dict[str, bool] = {}  # 临时存储消息流转信息
 
