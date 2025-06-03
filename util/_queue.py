@@ -39,7 +39,7 @@ class TaskQueue:
         if len(self._wait_queue) >= self._wait_size:
             raise QueueFullError(f"Task queue is full: {self._wait_size}")
         self._wait_queue.append({
-            trigger_id: Task(func, *args, **kwargs)
+            trigger_id: Task(func, args, kwargs)
         })
         while self._wait_queue and len(self._concur_queue) < self._concur_size:
             self._exec()
