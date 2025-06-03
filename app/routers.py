@@ -26,7 +26,7 @@ async def imagine(body: TriggerImagineIn):
     trigger_id, prompt = prompt_handler(body.prompt, body.picurl)
     trigger_type = TriggerType.generate.value
 
-    taskqueue.put(trigger_id, discord.generate, prompt)
+    taskqueue.put(trigger_id, discord.generate, prompt=prompt)
     return {"trigger_id": trigger_id, "trigger_type": trigger_type}
 
 
