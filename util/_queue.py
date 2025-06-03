@@ -17,7 +17,10 @@ class Task:
         self.kwargs = kwargs
 
     async def __call__(self) -> None:
-        await self.func(*self.args, **self.kwargs)
+        if asyncio.iscoroutinefunction(self.func):
+            return await self.func(*self.args, **self.kwargs)
+        else:
+            return self.func(*self.args, **self.kwargs)
 
     def __repr__(self) -> str:
         return f"{self.func.__name__}({self.args}, {self.kwargs})"
@@ -55,18 +58,15 @@ class TaskQueue:
         self._concur_queue.append(key)
         logger.debug(f"Task[{key}] start execution: {task}")
         
-        # ИСПРАВЛЕНИЕ: создаем event loop если его нет
         try:
             loop = asyncio.get_running_loop()
         except RuntimeError:
-            # Нет running loop - создаем новый в отдельном потоке
             def run_in_thread():
                 asyncio.run(task())
             thread = threading.Thread(target=run_in_thread, daemon=True)
             thread.start()
             return
         
-        # Есть running loop - используем его
         tsk = loop.create_task(task())
 
     def concur_size(self):
