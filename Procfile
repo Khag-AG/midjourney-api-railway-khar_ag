@@ -1,1 +1,1 @@
-web: python combined_server.py
+web: python /app/combined_server.py
