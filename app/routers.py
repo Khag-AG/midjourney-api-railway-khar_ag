@@ -26,7 +26,9 @@ async def imagine(body: TriggerImagineIn):
     trigger_id, prompt = prompt_handler(body.prompt, body.picurl)
     trigger_type = TriggerType.generate.value
 
+    print(f"API DEBUG: About to call taskqueue.put with trigger_id={trigger_id}, prompt='{prompt}'")
     taskqueue.put(trigger_id, discord.generate, prompt=prompt)
+    print(f"API DEBUG: TaskQueue.put completed for trigger_id={trigger_id}")
     return {"trigger_id": trigger_id, "trigger_type": trigger_type}
 
 
