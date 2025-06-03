@@ -109,7 +109,7 @@ if __name__ == '__main__':
     # Запускаем Discord бота в фоновом потоке
     print("Starting Discord bot thread...")
     bot_thread = threading.Thread(target=run_bot, daemon=True)
-    bot_thread.start()
+    # bot_thread.start()
     
     # Даем боту время на запуск
     print("Waiting 2 seconds for Discord bot...")
